@@ -7,7 +7,7 @@ package cmd
 import (
 	"os"
 
-	"github.com/minhluantran017/jenkins-cli/helper"
+	"github.com/minhluantran017/jenkins-cli/internal/helper"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 
