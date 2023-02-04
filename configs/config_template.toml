@@ -1,0 +1,25 @@
+# This is an example of your $HOME/.jenkins/config.toml file
+
+# Profile name to use in the application.
+# "default" profile is used if neither --profile flag
+# nor JENKINS_PROFILE environment variable is defined.
+[default]
+# Jenkins server URL
+url = "https://jenkins.example.com"
+# Jenkins user name
+username = "minhluantran017@gmail.com"
+# Jenkins password/API token
+password = "put-your-password-or-api-token-here"
+
+# Multiple  Jenkins profiles can be defined here:
+# APAC region
+[region-apac]
+url = "https://jenkins.apac.example.com"
+username = "minhluantran017@gmail.com"
+password = "my-password"
+
+# EMEA region
+[region-emea]
+url = "https://jenkins.emea.example.com"
+username = "minhluantran017@gmail.com"
+password = "other-password"
