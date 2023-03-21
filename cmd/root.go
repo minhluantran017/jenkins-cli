@@ -16,6 +16,7 @@ import (
 
 var (
 	profile string
+	debugLogging bool
 )
 
 var rootCmd = &cobra.Command{
@@ -36,11 +37,19 @@ func Execute() {
 
 func init() {
 	cobra.OnInitialize(initConfig)
+
 	rootCmd.PersistentFlags().StringVar(&profile, "profile", "", "Jenkins profile to use")
 	viper.BindPFlag("profile", rootCmd.PersistentFlags().Lookup("profile"))
+
+	rootCmd.PersistentFlags().BoolVar(&debugLogging, "debug", false, "Enable debug logging")
 }
 
 func initConfig() {
+	log.SetFormatter(&log.TextFormatter{FullTimestamp: true})
+	if debugLogging {
+		log.SetLevel(log.DebugLevel)
+	}
+
 	home, err := os.UserHomeDir()
 	cobra.CheckErr(err)
 	configFile := home + "/.jenkins/config.toml"
@@ -56,6 +65,6 @@ func initConfig() {
 			log.Debug("Profile is not set. Using 'default'.")
 			viper.Set("profile", "default")
 		}
-		log.Debug("Using config profile: ", viper.GetString("profile"))
+		log.Info("Using config profile: ", viper.GetString("profile"))
 	}
 }
