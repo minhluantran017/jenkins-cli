@@ -35,3 +35,14 @@ func ValidateJenkinsfile(path string) {
 	log.Debug("Validating Jenkinsfile")
 	log.Info(SendPostRequest(&profile, crumb, "pipeline-model-converter/validate", body, writer.FormDataContentType()))
 }
+
+// Mirror Jenkins pipeline between Jenkins instances
+func MirrorPipeline(srcProfileName string, dstProfileName string, pipelineName string) {
+	srcProfile := client.GetProfile(viper.GetString(srcProfileName))
+	srcCrumb := GetServerCrumb(&srcProfile)
+
+	dstProfile := client.GetProfile(viper.GetString(dstProfileName))
+	dstCrumb := GetServerCrumb(&dstProfile)
+
+	
+}
