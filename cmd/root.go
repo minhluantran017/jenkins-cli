@@ -6,6 +6,7 @@ package cmd
 
 import (
 	"os"
+	"path/filepath"
 
 	"github.com/minhluantran017/jenkins-cli/internal/helper"
 	"github.com/spf13/cobra"
@@ -52,7 +53,7 @@ func initConfig() {
 
 	home, err := os.UserHomeDir()
 	cobra.CheckErr(err)
-	configFile := home + "/.jenkins/config.toml"
+	configFile := filepath.Join(home, ".jenkins", "config.toml")
 	viper.SetConfigType("toml")
 	viper.SetConfigFile(configFile)
 	viper.AutomaticEnv() 
